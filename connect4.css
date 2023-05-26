@@ -1,0 +1,168 @@
+/* game board table */
+#board{
+  border-spacing: 8px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 10px;
+}
+tr{
+  display: block
+}
+tr:not(:first-child){
+  background-color: #3355ff;
+  box-shadow: 0 3px 0 0 #002bff, 3px 3px 0 3px #002bff, -3px 3px 0 3px #002bff;
+}
+
+tr:nth-child(2) {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+tr:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#board td {
+  width: 50px;
+  height: 50px;
+  border: solid 1px #666;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* pieces are div within game table cells: draw as colored circles */
+
+.piece {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: translateY(0px);
+  transition: transform 100ms ease 500ms;
+  box-shadow: inset 0 0 0px 0px #3355ff, inset 0px 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* piece dropping into gameboard */
+@keyframes drop {
+  0% {
+    transform: translateY(-125%);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(125%);
+  }
+}
+
+@-webkit-keyframes drop {
+  0% {
+    transform: translateY(-125%);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(125%);
+  }
+}
+
+.piece.drop {
+  animation: drop 200ms ease 1;
+  -webkit-animation: drop 200ms ease 1;
+	-moz-animation: drop 200ms ease 1;
+}
+
+.piece.winner{
+  box-shadow: inset 0px 0px 8px 3px rgb(255, 233, 3);
+}
+
+.piece.p1 {
+  background-color: var(--p1-color);
+}
+
+.piece.p2 {
+  background-color: var(--p2-color);
+}
+
+/* column-top is table row of clickable areas for each column */
+
+#column-top td {
+  border: dashed 1px lightgray;
+}
+
+#column-top td:hover {
+  background-color: var(--currplayer-color);
+}
+
+/* modal */
+#modal{
+  
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  
+}
+
+.modal-fade{
+  position: fixed;
+  left: 0;
+  top: 100vh;
+}
+
+.modal-fade.show .backdrop{
+  background: rgba(0, 0, 0, 0.25);
+}
+.backdrop{
+  height: 100%;
+  width: 100%;
+}
+.dialogue{
+  position: relative;
+  top: 100%;
+  height: 350px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+  margin: auto;
+  border-radius: 20px;
+  background: white;
+  padding: 26px;
+  text-align: center;
+  font-size: 20px;
+  transition: all 300ms ease;
+}
+
+.dialogue.show{
+  top: 25%;
+}
+.dialogue img{
+  height: 65px;
+}
+.show{
+  top: 0;
+}
+
+input[type="color" i] {
+  width: 20%;
+}
+
+#start, .start, .next, .restart{
+  width: 75%;
+  margin-top: 30px;
+  padding: 6px;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.winner-token{
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+}
